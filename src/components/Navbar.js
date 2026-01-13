@@ -8,7 +8,7 @@ import { CakeSlice, Sun, Moon, Menu, X } from "lucide-react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, setIsDark } = useTheme();
-  const [borderWidth, setBorderWidth] = useState("0%"); // For animated bottom border
+  const [borderWidth, setBorderWidth] = useState("0%"); 
 
   useEffect(() => {
     const html = document.documentElement;
@@ -20,12 +20,12 @@ export default function Navbar() {
 
   const navLinks = ["Home", "Design", "Contact", "Login", "Register"];
 
-  const lightBg = "rgba(176,196,138,0.8)"; // Olive pastel
-  const darkBg = "rgba(55,31,10,0.95)"; // Dark chocolate
-  const lightText = "rgba(75,43,17,1)"; // Deep brown
-  const darkText = "rgba(176,196,138,0.9)"; // Soft olive for dark
-  const lightHover = "rgba(60,30,10,1)"; // Deep brown underline
-  const darkHover = "rgba(176,196,138,0.8)"; // Olive underline for dark theme
+  const lightBg = "rgba(176,196,138,0.8)"; 
+  const darkBg = "rgba(55,31,10,0.95)"; 
+  const lightText = "rgba(75,43,17,1)";
+  const darkText = "rgba(176,196,138,0.9)"; 
+  const lightHover = "rgba(60,30,10,1)"; 
+  const darkHover = "rgba(176,196,138,0.8)"; 
 
   return (
     <nav className="fixed top-0 w-full z-50">

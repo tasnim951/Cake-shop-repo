@@ -118,11 +118,11 @@ export default function Hero() {
   }}
   onMouseEnter={(e) => {
     e.currentTarget.style.backgroundColor = isDark
-      ? "rgba(75,43,17,1)" // wood bg on hover in dark
+      ? "rgba(75,43,17,1)" 
       : "rgba(75,43,17,1)";
     e.currentTarget.style.color = isDark
-      ? "rgba(176,196,138,0.9)" // olive text in dark
-      : "rgba(176,196,138,0.9)"; // olive text in light
+      ? "rgba(176,196,138,0.9)" 
+      : "rgba(176,196,138,0.9)";
   }}
   onMouseLeave={(e) => {
     e.currentTarget.style.backgroundColor = "transparent";
