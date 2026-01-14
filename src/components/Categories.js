@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 import {
   FaBirthdayCake,
   FaHeart,
@@ -52,7 +52,7 @@ export default function Categories() {
   const btnText = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.9)";
 
   return (
-    <section style={{ backgroundColor: bg }} className="w-full py-28">
+    <section style={{ backgroundColor: bg }} className="w-full pt-12 pb-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* SECTION HEADING */}

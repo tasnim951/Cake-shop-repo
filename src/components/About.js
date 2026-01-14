@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { GiCakeSlice, GiCupcake } from "react-icons/gi";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function About() {
   const [show, setShow] = useState(false);
@@ -22,7 +22,8 @@ export default function About() {
   const secondaryText = isDark ? "rgba(176,196,138,0.9)" : "rgba(75,43,17,1)";
 
   return (
-    <section style={{ backgroundColor: bgColor }} className="w-full py-24">
+    <section style={{ backgroundColor: bgColor }} className="w-full pt-12 pb-20"
+>
       <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-12">
 
         {/* Heading */}

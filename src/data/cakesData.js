@@ -1,0 +1,88 @@
+const cakesData = [
+  {
+    id: 1,
+    name: "Chocolate Birthday Bliss",
+    category: "Birthday",
+    image: "/bday.avif",
+    shortDescription: "A rich chocolate cake made for joyful birthdays.",
+    longDescription:
+      "Chocolate Birthday Bliss is layered with moist chocolate sponge and silky ganache, finished with elegant birthday decorations. Perfect for all age celebrations.",
+    taste: "Rich & Chocolatey",
+    flavours: ["Chocolate", "Dark Cocoa"],
+    priceRange: "₹1,200 – ₹2,500",
+    rating: 4.7,
+    occasion: "Birthday",
+  },
+  {
+    id: 2,
+    name: "Vanilla Sprinkle Delight",
+    category: "Birthday",
+    image: "/bday-2.avif",
+    shortDescription: "Light vanilla cake with colorful birthday vibes.",
+    longDescription:
+      "A soft vanilla sponge layered with whipped cream and fun sprinkles. Designed to bring cheerful energy to birthday celebrations.",
+    taste: "Light & Sweet",
+    flavours: ["Vanilla", "Cream"],
+    priceRange: "₹1,000 – ₹2,200",
+    rating: 4.5,
+    occasion: "Birthday",
+  },
+  {
+    id: 3,
+    name: "Royal Wedding Elegance",
+    category: "Wedding",
+    image: "/wedding.avif",
+    shortDescription: "Luxury wedding cake crafted with elegance.",
+    longDescription:
+      "Royal Wedding Elegance features premium ingredients, smooth fondant finish, and a refined design suitable for grand weddings.",
+    taste: "Balanced & Premium",
+    flavours: ["Vanilla Almond", "White Chocolate"],
+    priceRange: "₹4,500 – ₹9,000",
+    rating: 4.9,
+    occasion: "Wedding",
+  },
+  {
+    id: 4,
+    name: "Floral Wedding Fantasy",
+    category: "Wedding",
+    image: "/wedding-2.avif",
+    shortDescription: "Romantic floral-inspired wedding cake.",
+    longDescription:
+      "Designed with soft floral tones and delicate textures, this cake blends beauty with taste for unforgettable wedding moments.",
+    taste: "Soft & Elegant",
+    flavours: ["Rose Vanilla", "Strawberry Cream"],
+    priceRange: "₹5,000 – ₹10,000",
+    rating: 4.8,
+    occasion: "Wedding",
+  },
+  {
+    id: 5,
+    name: "Golden Celebration Cake",
+    category: "Occasion",
+    image: "/occasion.PNG",
+    shortDescription: "Perfect for anniversaries and special milestones.",
+    longDescription:
+      "Golden Celebration Cake is crafted for special moments like anniversaries, promotions, and achievements with a premium finish.",
+    taste: "Smooth & Creamy",
+    flavours: ["Butterscotch", "Caramel"],
+    priceRange: "₹2,500 – ₹4,000",
+    rating: 4.6,
+    occasion: "Special Occasion",
+  },
+  {
+    id: 6,
+    name: "Festive Dream Delight",
+    category: "Occasion",
+    image: "/occasion-2.avif",
+    shortDescription: "A festive cake for joyful gatherings.",
+    longDescription:
+      "Festive Dream Delight combines vibrant design with delicious layers, making it ideal for parties and family gatherings.",
+    taste: "Sweet & Festive",
+    flavours: ["Pineapple", "Vanilla Cream"],
+    priceRange: "₹2,000 – ₹3,800",
+    rating: 4.4,
+    occasion: "Special Occasion",
+  },
+];
+
+export default cakesData;

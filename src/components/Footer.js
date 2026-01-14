@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
 import { CakeSlice } from "lucide-react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
@@ -17,7 +17,7 @@ export default function Footer() {
   const links = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Designs", href: "/designs" },
+    { name: "Design", href: "/design" },
     { name: "Contact", href: "/contact" },
   ];
 

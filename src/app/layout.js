@@ -1,12 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import Categories from "@/components/Categories";
-import { ThemeProvider } from "../../context/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
-import About from "@/components/About";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +29,6 @@ export default function RootLayout({ children }) {
           {/* Wrap everything inside ThemeProvider */}
           <ThemeProvider>
             <Navbar />
-            <Hero />
-             <About/>
-             <Categories/>
             {children}
             <Footer/>
           </ThemeProvider>

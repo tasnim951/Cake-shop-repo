@@ -1,31 +1,37 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
 import { CakeSlice, Sun, Moon, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, setIsDark } = useTheme();
-  const [borderWidth, setBorderWidth] = useState("0%"); 
+  const [borderWidth, setBorderWidth] = useState("0%");
 
   useEffect(() => {
     const html = document.documentElement;
     isDark ? html.classList.add("dark") : html.classList.remove("dark");
 
-    // Animate border on mount
     setTimeout(() => setBorderWidth("100%"), 50);
   }, [isDark]);
 
-  const navLinks = ["Home", "Design", "Contact", "Login", "Register"];
+  // ✅ FIXED ROUTES (NO INFO CHANGED)
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Design", href: "/design" },
+    { label: "Contact", href: "/contact" },
+    { label: "Login", href: "/login" },
+    { label: "Register", href: "/register" },
+  ];
 
-  const lightBg = "rgba(176,196,138,0.8)"; 
-  const darkBg = "rgba(55,31,10,0.95)"; 
+  const lightBg = "rgba(176,196,138,0.8)";
+  const darkBg = "rgba(55,31,10,0.95)";
   const lightText = "rgba(75,43,17,1)";
-  const darkText = "rgba(176,196,138,0.9)"; 
-  const lightHover = "rgba(60,30,10,1)"; 
-  const darkHover = "rgba(176,196,138,0.8)"; 
+  const darkText = "rgba(176,196,138,0.9)";
+  const lightHover = "rgba(60,30,10,1)";
+  const darkHover = "rgba(176,196,138,0.8)";
 
   return (
     <nav className="fixed top-0 w-full z-50">
@@ -36,7 +42,7 @@ export default function Navbar() {
           transition: "background-color 0.3s ease",
         }}
       >
-        {/* Logo */}
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2 group">
           <CakeSlice
             size={45}
@@ -57,44 +63,52 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Menu */}
+        {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center gap-8 font-semibold">
           {navLinks.map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               className="relative font-bold transition-colors duration-300 group"
               style={{ color: isDark ? darkText : lightText }}
             >
-              {item}
-              {/* Underline Animation */}
+              {item.label}
               <span
-                className="absolute left-1/2 -bottom-1 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full group-hover:-translate-x-1/2"
+                className="absolute left-1/2 -bottom-1 h-[2px] w-0 transition-all duration-300
+                           group-hover:w-full group-hover:-translate-x-1/2"
                 style={{ backgroundColor: isDark ? darkHover : lightHover }}
               />
             </Link>
           ))}
 
-          {/* Theme Toggle */}
+          {/* THEME TOGGLE */}
           <button
             onClick={() => setIsDark(!isDark)}
             aria-label="Toggle Theme"
             className="ml-4 p-2 rounded-full hover:bg-[rgba(60,30,10,0.2)] transition"
           >
-            {isDark ? <Sun size={20} color={darkText} /> : <Moon size={20} color={lightText} />}
+            {isDark ? (
+              <Sun size={20} color={darkText} />
+            ) : (
+              <Moon size={20} color={lightText} />
+            )}
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden p-2 rounded hover:bg-[rgba(60,30,10,0.2)] transition"
         >
-          {isOpen ? <X size={28} color={isDark ? darkText : lightText} /> : <Menu size={28} color={isDark ? darkText : lightText} />}
+          {isOpen ? (
+            <X size={28} color={isDark ? darkText : lightText} />
+          ) : (
+            <Menu size={28} color={isDark ? darkText : lightText} />
+          )}
         </button>
       </div>
 
-      {/* Animated bottom border */}
+      {/* ANIMATED BORDER */}
       <div className="w-full h-[3px] overflow-hidden">
         <div
           className="h-full transition-all duration-[1500ms]"
@@ -105,7 +119,7 @@ export default function Navbar() {
         />
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {isOpen && (
         <div
           className="md:hidden px-6 pt-2 pb-4 space-y-4 font-semibold transition-colors duration-300"
@@ -113,17 +127,17 @@ export default function Navbar() {
         >
           {navLinks.map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               className="block font-bold text-lg transition-colors duration-300"
               style={{ color: isDark ? darkText : lightText }}
               onClick={() => setIsOpen(false)}
             >
-              {item}
+              {item.label}
             </Link>
           ))}
 
-          {/* Mobile Theme Toggle */}
+          {/* MOBILE THEME TOGGLE */}
           <button
             onClick={() => {
               setIsDark(!isDark);
