@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -11,27 +11,20 @@ export default function RegisterPage() {
   const { isDark } = useTheme();
   const router = useRouter();
   const [error, setError] = useState("");
+  const [show, setShow] = useState(false);
 
-  /* SAME COLORS AS LOGIN */
-  const bg = isDark
-    ? "rgba(55,31,10,0.95)"
-    : "rgba(176,196,138,0.85)";
-  const cardBg = isDark
-    ? "rgba(75,43,17,0.95)"
-    : "#fff";
-  const heading = isDark
-    ? "rgba(176,196,138,0.9)"
-    : "rgba(75,43,17,1)";
-  const text = isDark ? "#eee" : "#333";
-  const primaryBg = isDark
-    ? "rgba(176,196,138,0.9)"
-    : "rgba(75,43,17,1)";
-  const primaryText = isDark
-    ? "rgba(55,31,10,0.95)"
-    : "rgba(176,196,138,0.9)";
-  const border = isDark
-    ? "rgba(176,196,138,0.6)"
-    : "rgba(75,43,17,0.6)";
+  useEffect(() => {
+    setShow(true);
+  }, []);
+
+  /* THEME COLORS – MATCH LOGIN */
+  const bg = isDark ? "#2c1b0f" : "#B0C48A";
+  const cardBg = isDark ? "#3b2513" : "#97af7a";
+  const heading = "#F5F0DC";
+  const text = "#F5F0DC";
+  const inputBg = isDark ? "#2a1a0f" : "#a9bf8a";
+  const border = "rgba(176,196,138,0.6)";
+  const primaryBg = isDark ? "#6B4226" : "#556B2F";
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -52,12 +45,13 @@ export default function RegisterPage() {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center px-6"
+      className="min-h-screen flex justify-center px-6 pt-24"
       style={{ backgroundColor: bg }}
     >
       <div
-        className="w-full max-w-md rounded-3xl p-8 shadow-2xl"
-        style={{ backgroundColor: cardBg }}
+        className={`w-full max-w-md rounded-3xl p-8 shadow-2xl transition-all duration-700
+          ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        style={{ backgroundColor: cardBg, border: `1px solid ${border}` }}
       >
         <h2
           className="text-3xl font-extrabold text-center mb-2"
@@ -70,21 +64,22 @@ export default function RegisterPage() {
         </h2>
 
         <p
-          className="text-center mb-8"
+          className="text-center mb-8 text-sm"
           style={{ color: text, fontFamily: `"Poppins", sans-serif` }}
         >
           Create your account and start designing cakes
         </p>
 
-        <form onSubmit={handleRegister} className="space-y-4">
+        {/* FORM */}
+        <form onSubmit={handleRegister} className="space-y-5">
           <input
             name="email"
             type="email"
             placeholder="Email address"
             required
-            className="w-full px-4 py-3 rounded-xl outline-none"
+            className="w-full px-4 py-3 rounded-xl outline-none transition-all focus:scale-[1.01]"
             style={{
-              backgroundColor: isDark ? "#2a1a0f" : "#f7f7f7",
+              backgroundColor: inputBg,
               color: text,
               border: `1px solid ${border}`,
             }}
@@ -95,29 +90,30 @@ export default function RegisterPage() {
             type="password"
             placeholder="Password"
             required
-            className="w-full px-4 py-3 rounded-xl outline-none"
+            className="w-full px-4 py-3 rounded-xl outline-none transition-all focus:scale-[1.01]"
             style={{
-              backgroundColor: isDark ? "#2a1a0f" : "#f7f7f7",
+              backgroundColor: inputBg,
               color: text,
               border: `1px solid ${border}`,
             }}
           />
 
           {error && (
-            <p className="text-sm text-red-400 text-center">{error}</p>
+            <p className="text-sm text-red-300 text-center">{error}</p>
           )}
 
           <button
-            className="w-full py-3 rounded-full font-semibold transition hover:scale-[1.02]"
+            className="w-full py-3 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-xl"
             style={{
               backgroundColor: primaryBg,
-              color: primaryText,
+              color: "#F5F0DC",
             }}
           >
             Create Account
           </button>
         </form>
 
+        {/* DIVIDER */}
         <div className="flex items-center gap-4 my-6">
           <div className="flex-1 h-px" style={{ backgroundColor: border }} />
           <span className="text-sm" style={{ color: text }}>
@@ -126,15 +122,18 @@ export default function RegisterPage() {
           <div className="flex-1 h-px" style={{ backgroundColor: border }} />
         </div>
 
+        {/* GOOGLE */}
         <button
           onClick={async () => {
             await googleLogin();
             router.push("/");
           }}
-          className="w-full flex items-center justify-center gap-3 py-3 rounded-full font-semibold transition hover:scale-[1.02]"
+          className="w-full flex items-center justify-center gap-3 py-3 rounded-full
+                     font-semibold transition-all hover:scale-105 hover:shadow-lg"
           style={{
-            border: `1px solid ${border}`,
+            border: `1.5px solid ${border}`,
             color: heading,
+            backgroundColor: "transparent",
           }}
         >
           <FaGoogle /> Continue with Google

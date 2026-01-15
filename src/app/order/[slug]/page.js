@@ -8,7 +8,7 @@ import { useTheme } from "@/context/ThemeContext";
 import PrivateRoute from "@/components/PrivateRoute";
 import toast from "react-hot-toast";
 import { FaUtensils, FaBirthdayCake, FaStar } from "react-icons/fa";
-import "@fontsource/playfair-display";
+import "@fontsource/playfair-display"; // stylish heading font
 
 function OrderPage() {
   const { slug } = useParams();
@@ -30,10 +30,11 @@ function OrderPage() {
   const bg = isDark ? "#2d190c" : "#f0f4e3";
   const cardBg = isDark ? "#55301a" : "#ffffff";
   const borderColor = isDark ? "rgba(176,196,138,0.3)" : "rgba(0,0,0,0.1)";
-  const textColor = isDark ? "#B0C48A" : "#3C2814"; // Heading & labels
-  const subTextColor = isDark ? "#B0C48A" : "#6B4226"; // Olive/coffee for image texts & description
+  const textColor = isDark ? "#B0C48A" : "#3C2814"; // olive for dark theme
   const buttonBg = "#4B2B11";
   const buttonText = "#F5F0DC";
+  const iconColor = isDark ? "#B0C48A" : "#6B4226"; // olive/coffee tone
+  const infoTextColor = isDark ? "#B0C48A" : "#6B4226"; // text below image
 
   useEffect(() => {
     if (!cake) return;
@@ -107,7 +108,7 @@ function OrderPage() {
         style={{
           backgroundColor: cardBg,
           border: `1px solid ${borderColor}`,
-          paddingBottom: "3rem" // extra bottom padding to avoid touching footer
+          paddingBottom: "3rem", // extra space at bottom so it doesn't touch footer
         }}
       >
         {/* Left: Image & Details */}
@@ -119,21 +120,24 @@ function OrderPage() {
               className="w-48 md:w-56 h-auto object-cover rounded-xl shadow-lg group-hover:scale-105 transition-transform"
             />
           </div>
-          <h2 className="text-xl font-semibold" style={{ color: textColor }}>
+          <h2
+            className="text-xl font-semibold"
+            style={{ color: textColor }}
+          >
             {cake.name}
           </h2>
-          <p className="text-center text-sm md:text-base" style={{ color: subTextColor }}>
+          <p className="text-center text-sm md:text-base" style={{ color: infoTextColor }}>
             {cake.description || "Delicious and freshly baked cake for every occasion."}
           </p>
           <div className="flex flex-col gap-2 text-sm md:text-base mt-2">
-            <div className="flex items-center gap-2" style={{ color: subTextColor }}>
-              <FaBirthdayCake /> Flavor: {flavor}
+            <div className="flex items-center gap-2" style={{ color: infoTextColor }}>
+              <FaBirthdayCake style={{ color: iconColor }} /> Flavor: {flavor}
             </div>
-            <div className="flex items-center gap-2" style={{ color: subTextColor }}>
-              <FaUtensils /> Size: {size}
+            <div className="flex items-center gap-2" style={{ color: infoTextColor }}>
+              <FaUtensils style={{ color: iconColor }} /> Size: {size}
             </div>
-            <div className="flex items-center gap-2" style={{ color: subTextColor }}>
-              <FaStar /> Toppings: {toppings.join(", ") || "None"}
+            <div className="flex items-center gap-2" style={{ color: infoTextColor }}>
+              <FaStar style={{ color: iconColor }} /> Toppings: {toppings.join(", ") || "None"}
             </div>
           </div>
         </div>

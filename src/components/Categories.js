@@ -3,12 +3,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import {
-  FaBirthdayCake,
-  FaHeart,
-  FaStar,
-  FaArrowRight,
-} from "react-icons/fa";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import { FaBirthdayCake, FaHeart, FaStar, FaArrowRight } from "react-icons/fa";
 
 const categories = [
   {
@@ -33,9 +30,16 @@ const categories = [
 
 export default function Categories() {
   const { isDark } = useTheme();
+  const { user } = useAuth();
+  const router = useRouter();
+
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [requirements, setRequirements] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setShow(true), 120);
@@ -45,11 +49,51 @@ export default function Categories() {
   const bg = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.85)";
   const heading = isDark ? "rgba(176,196,138,0.9)" : "rgba(75,43,17,1)";
   const text = isDark ? "rgba(235,235,235,0.9)" : "rgba(60,40,20,0.9)";
-  const borderColor = isDark
-    ? "rgba(176,196,138,0.7)"
-    : "rgba(75,43,17,0.8)";
+  const borderColor = isDark ? "rgba(176,196,138,0.7)" : "rgba(75,43,17,0.8)";
   const btnBg = isDark ? "rgba(176,196,138,0.9)" : "rgba(75,43,17,1)";
   const btnText = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.9)";
+
+  const handleOpenModal = (cat) => {
+    if (!user) {
+      router.push(`/login?redirect=/order-demo`);
+      return;
+    }
+    setSelected(cat.title);
+    setOpen(true);
+    setName("");
+    setPhone("");
+    setRequirements("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !phone) return alert("Please fill all required fields!");
+
+    setLoading(true);
+
+    // Create demo order object
+    const demoOrder = {
+      id: Date.now(),
+      cakeName: selected,
+      cakeImage: categories.find(c => c.title === selected).image,
+      name,
+      phone,
+      requirements,
+      status: "Pending",
+      total: 0, // demo order
+    };
+
+    // Save to localStorage (My Orders)
+    const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    localStorage.setItem("orders", JSON.stringify([...existingOrders, demoOrder]));
+
+    setTimeout(() => {
+      setLoading(false);
+      setOpen(false);
+      alert("Order placed successfully!");
+      router.push("/my-orders"); // Redirect to My Orders
+    }, 500);
+  };
 
   return (
     <section style={{ backgroundColor: bg }} className="w-full pt-12 pb-24">
@@ -141,10 +185,7 @@ export default function Categories() {
                 {/* BUTTON */}
                 <div className="flex justify-end mt-4">
                   <button
-                    onClick={() => {
-                      setSelected(cat.title);
-                      setOpen(true);
-                    }}
+                    onClick={() => handleOpenModal(cat)}
                     className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold
                       transition-all duration-300 hover:scale-105"
                     style={{ backgroundColor: btnBg, color: btnText }}
@@ -161,43 +202,54 @@ export default function Categories() {
 
       {/* MODAL */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center px-4">
           <div
-            className="w-[90%] max-w-md p-8 rounded-2xl"
+            className="w-full max-w-md p-8 rounded-2xl"
             style={{ backgroundColor: bg }}
           >
             <h3 className="text-2xl font-bold mb-6" style={{ color: heading }}>
               Book – {selected}
             </h3>
 
-            <form className="flex flex-col gap-4">
-              {["Your Name", "Phone Number"].map((p, i) => (
-                <input
-                  key={i}
-                  placeholder={p}
-                  className="px-4 py-3 rounded-lg outline-none"
-                  style={{
-                    backgroundColor: isDark ? "#2a1a0f" : "#ffffff",
-                    color: isDark ? "#f5f5f5" : "#000000",
-                  }}
-                />
-              ))}
-
-              <textarea
-                placeholder="Your requirements"
-                rows={3}
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <input
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="px-4 py-3 rounded-lg outline-none"
                 style={{
                   backgroundColor: isDark ? "#2a1a0f" : "#ffffff",
                   color: isDark ? "#f5f5f5" : "#000000",
                 }}
               />
-
+              <input
+                placeholder="Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="px-4 py-3 rounded-lg outline-none"
+                style={{
+                  backgroundColor: isDark ? "#2a1a0f" : "#ffffff",
+                  color: isDark ? "#f5f5f5" : "#000000",
+                }}
+              />
+              <textarea
+                placeholder="Your requirements"
+                rows={3}
+                value={requirements}
+                onChange={(e) => setRequirements(e.target.value)}
+                className="px-4 py-3 rounded-lg outline-none"
+                style={{
+                  backgroundColor: isDark ? "#2a1a0f" : "#ffffff",
+                  color: isDark ? "#f5f5f5" : "#000000",
+                }}
+              />
               <button
+                type="submit"
                 className="mt-2 px-6 py-3 rounded-full font-semibold"
                 style={{ backgroundColor: btnBg, color: btnText }}
+                disabled={loading}
               >
-                Submit Booking
+                {loading ? "Submitting..." : "Submit Booking"}
               </button>
             </form>
 

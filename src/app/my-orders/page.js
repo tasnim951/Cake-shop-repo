@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import PrivateRoute from "@/components/PrivateRoute";
 import toast from "react-hot-toast";
@@ -9,86 +9,132 @@ function MyOrdersPage() {
   const { isDark } = useTheme();
   const [orders, setOrders] = useState([]);
 
-  const bg = isDark ? "#2d190c" : "#f0f4e3";
-  const cardBg = isDark ? "#55301a" : "#ffffff";
-  const textColor = isDark ? "#F5F0DC" : "#3C2814";
-  const borderColor = isDark ? "rgba(176,196,138,0.5)" : "rgba(0,0,0,0.1)";
+  // Theme colors
+  const bg = isDark ? "#2c1b0f" : "#B0C48A"; // full page background
+  const cardBg = isDark ? "#3b2513" : "#97af7a"; // card background
+  const borderColor = isDark ? "rgba(176,196,138,0.3)" : "rgba(150,180,110,0.3)";
+  const textColor = "#F5F0DC"; // cream/light text
+  const buttonOlive = "#B0C48A"; // olive button
+  const buttonChocolate = "#6B4226"; // chocolate button
 
   useEffect(() => {
-    const storedOrders = JSON.parse(localStorage.getItem("orders") || "[]");
-    setOrders(storedOrders);
+    const savedOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    setOrders(savedOrders);
   }, []);
 
-  const handleCancel = (orderId) => {
-    if (!confirm("Are you sure you want to cancel this order?")) return;
-    const updated = orders.map((o) =>
-      o.id === orderId ? { ...o, status: "Cancelled" } : o
+  const handleDelete = (id) => {
+    const updatedOrders = orders.filter((o) => o.id !== id);
+    setOrders(updatedOrders);
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+    toast.success("Order deleted successfully!");
+  };
+
+  const handleCancel = (id) => {
+    const updatedOrders = orders.map((o) =>
+      o.id === id ? { ...o, status: "Cancelled" } : o
     );
-    setOrders(updated);
-    localStorage.setItem("orders", JSON.stringify(updated));
+    setOrders(updatedOrders);
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
     toast.success("Order cancelled!");
   };
 
   return (
-    <div className="w-full min-h-screen py-16 px-4 md:px-12" style={{ backgroundColor: bg }}>
-      <h1 className="text-4xl font-bold mb-12 text-center" style={{ color: textColor }}>
-        My Orders
+    <div
+      className="w-full min-h-screen flex flex-col items-center pt-[6rem] px-4 md:px-12"
+      style={{ backgroundColor: bg }}
+    >
+      {/* Heading */}
+      <h1
+        className="text-4xl md:text-5xl font-bold mb-10 text-center animate-bounce"
+        style={{ color: textColor, fontFamily: "'Playfair Display', serif" }}
+      >
+        MY ORDERS
       </h1>
 
-      {orders.length === 0 && (
-        <p className="text-center text-lg" style={{ color: textColor }}>
-          You have no orders yet.
-        </p>
-      )}
+      {/* Orders List */}
+      <div className="w-full max-w-5xl flex flex-col gap-6">
+        {orders.length === 0 && (
+          <p
+            className="text-center text-lg mt-10"
+            style={{ color: textColor }}
+          >
+            No orders placed yet.
+          </p>
+        )}
 
-      <div className="flex flex-col gap-6">
         {orders.map((order) => (
           <div
             key={order.id}
-            className="flex flex-col md:flex-row md:justify-between items-start md:items-center p-6 rounded-2xl border shadow-md gap-4 md:gap-0"
-            style={{ backgroundColor: cardBg, borderColor, color: textColor }}
+            className="flex flex-col md:flex-row gap-4 p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow w-full"
+            style={{ backgroundColor: cardBg, border: `1px solid ${borderColor}` }}
           >
-            <div className="flex items-center gap-4">
+            {/* Image */}
+            <div className="md:w-1/4 flex justify-center items-center">
               <img
-                src={order.cakeImage || "/bday.avif"}
+                src={order.cakeImage}
                 alt={order.cakeName}
-                className="w-24 h-24 object-cover rounded-lg"
+                className="w-40 md:w-48 h-auto object-cover rounded-xl shadow-lg"
               />
-              <div>
-                <h2 className="text-xl font-semibold">{order.cakeName}</h2>
-                <p className="text-sm">
-                  Size: {order.size} | Flavor: {order.flavor} | Toppings: {order.toppings?.join(", ") || "None"}
-                </p>
-                <p className="text-sm">Delivery: {order.deliveryDate}</p>
-              </div>
             </div>
 
-            <div className="flex flex-col md:items-end gap-2">
-              <p
-                className={`font-semibold ${
-                  order.status === "Pending" ? "text-yellow-500" : order.status === "Cancelled" ? "text-red-500" : "text-green-500"
-                }`}
-              >
-                Status: {order.status}
-              </p>
-              <p className="font-semibold">Total: ₹{order.total}</p>
-              {order.status !== "Cancelled" && (
+            {/* Details */}
+            <div className="md:w-3/4 flex flex-col justify-between gap-3">
+              <div>
+                <h2
+                  className="text-2xl font-semibold"
+                  style={{ color: textColor }}
+                >
+                  {order.cakeName}
+                </h2>
+                <p className="text-sm md:text-base" style={{ color: textColor }}>
+                  Size: {order.size} | Flavor: {order.flavor} |Toppings: {(order.toppings && order.toppings.length > 0)
+  ? order.toppings.join(", ")
+  : "None"}
+
+                </p>
+                <p className="text-sm md:text-base mt-1" style={{ color: textColor }}>
+                  Delivery: {order.deliveryDate} | Total: ₹{order.total}
+                </p>
+                <p className="text-sm mt-1 font-semibold" style={{ color: textColor }}>
+                  Status: {order.status}
+                </p>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-4 mt-2 flex-wrap">
                 <button
                   onClick={() => handleCancel(order.id)}
-                  className="px-4 py-2 mt-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition"
+                  className="px-4 py-2 rounded-lg font-semibold shadow hover:scale-105 transition-transform"
+                  style={{
+                    backgroundColor: buttonOlive,
+                    color: "#fff",
+                  }}
                 >
                   Cancel
                 </button>
-              )}
+                <button
+                  onClick={() => handleDelete(order.id)}
+                  className="px-4 py-2 rounded-lg font-semibold shadow hover:scale-105 transition-transform"
+                  style={{
+                    backgroundColor: buttonChocolate,
+                    color: "#fff",
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Extra space at bottom */}
+      <div className="h-10"></div>
     </div>
   );
 }
 
-export default function MyOrdersPageWrapper() {
+export default function MyOrdersWrapper() {
   return (
     <PrivateRoute>
       <MyOrdersPage />

@@ -3,10 +3,12 @@
 import { useTheme } from "@/context/ThemeContext";
 import { useParams, useRouter } from "next/navigation";
 import cakes from "@/data/cakesData";
-import { FaStar, FaArrowRight } from "react-icons/fa";
+import { FaStar, FaArrowRight, FaShoppingCart } from "react-icons/fa";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CakeDetail() {
   const { isDark } = useTheme();
+  const { user } = useAuth(); // <- for login check
   const params = useParams();
   const router = useRouter();
 
@@ -32,6 +34,15 @@ export default function CakeDetail() {
   const btnBg = isDark ? "rgba(176,196,138,0.95)" : "rgba(75,43,17,1)";
   const btnText = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.95)";
   const borderColor = isDark ? "rgba(176,196,138,0.4)" : "rgba(75,43,17,0.3)";
+
+  // Handle Order button click
+  const handleOrder = () => {
+    if (!user) {
+      router.push(`/login?redirect=/order/${slug}`);
+    } else {
+      router.push(`/order/${slug}`);
+    }
+  };
 
   return (
     <section style={{ backgroundColor: bg }} className="w-full py-24">
@@ -92,15 +103,26 @@ export default function CakeDetail() {
             </span>
           </div>
 
-          {/* BACK BUTTON */}
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 px-6 py-3 rounded-full font-semibold w-max
-                       transition-all duration-300 hover:scale-105 hover:shadow-lg mt-4"
-            style={{ backgroundColor: btnBg, color: btnText }}
-          >
-            <FaArrowRight /> Back to Cakes
-          </button>
+          {/* BUTTONS */}
+          <div className="flex gap-4 mt-4 flex-wrap">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-2 px-6 py-3 rounded-full font-semibold w-max
+                         transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ backgroundColor: btnBg, color: btnText }}
+            >
+              <FaArrowRight /> Back to Cakes
+            </button>
+
+            <button
+              onClick={handleOrder}
+              className="flex items-center gap-2 px-6 py-3 rounded-full font-semibold w-max
+                         transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ backgroundColor: btnBg, color: btnText }}
+            >
+              <FaShoppingCart /> Order Now
+            </button>
+          </div>
         </div>
       </div>
     </section>
