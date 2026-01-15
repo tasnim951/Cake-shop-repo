@@ -1,80 +1,114 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import { FaPalette } from "react-icons/fa";
+import Image from "next/image";
+import { Cake, Palette, Calendar, Ruler } from "lucide-react";
 
 export default function DesignPage() {
   const { isDark } = useTheme();
 
-  const bg = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.85)";
-  const headingColor = isDark ? "rgba(176,196,138,0.9)" : "rgba(75,43,17,1)";
-  const textColor = isDark ? "rgba(235,235,235,0.9)" : "rgba(60,40,20,0.9)";
-  const cardBg = isDark ? "rgba(75,43,17,0.85)" : "#fff";
-  const cardBorder = isDark ? "rgba(176,196,138,0.7)" : "rgba(75,43,17,0.7)";
+  const bg = isDark ? "rgba(45,25,12,0.95)" : "rgba(176,196,138,0.85)";
+  const headingColor = isDark ? "#F5F0DC" : "#4B2B11";
+  const textColor = isDark ? "#F5F0DC" : "#3C2814";
+  const cardBg = isDark ? "rgba(85,45,22,0.95)" : "rgba(255,255,255,0.85)";
+  const oliveBorder = isDark ? "rgba(176,196,138,0.55)" : "rgba(60,40,20,0.3)";
+  const cardHover = "transition-all duration-500 hover:-translate-y-1 hover:shadow-xl";
 
+  // Example cake designs
   const designs = [
     {
-      title: "Custom Birthday Cakes",
-      description: "Create a cake that perfectly fits your celebration and style.",
-      icon: <FaPalette />,
+      img: "/cake1.avif",
+      title: "Birthday Cake",
+      baking: "Vanilla sponge",
+      flavor: "Chocolate & Strawberry",
+      size: "8 inches",
+      color: "Pink & White",
     },
     {
-      title: "Wedding Cake Designs",
-      description: "Elegant and luxurious cakes for your perfect wedding day.",
-      icon: <FaPalette />,
+      img: "/cake2.avif",
+      title: "Wedding Cake",
+      baking: "Buttercream sponge",
+      flavor: "Red Velvet",
+      size: "12 inches",
+      color: "White & Gold",
     },
     {
-      title: "Special Occasion Cakes",
-      description: "From anniversaries to corporate events, we craft unique designs.",
-      icon: <FaPalette />,
+      img: "/cake3.avif",
+      title: "Anniversary Cake",
+      baking: "Chocolate sponge",
+      flavor: "Dark Chocolate Ganache",
+      size: "10 inches",
+      color: "Chocolate & Olive",
     },
+    // Add more rows here
   ];
 
   return (
-    <section style={{ backgroundColor: bg }} className="w-full pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-6">
+    <section style={{ backgroundColor: bg }} className="w-full pt-24 pb-16 px-6">
+      <div className="max-w-7xl mx-auto">
 
-        {/* Heading */}
+        {/* HEADER */}
         <div className="text-center mb-16">
-          <h2
-            className="text-4xl md:text-5xl font-extrabold mb-4 animate-fadeIn"
+          <h1
+            className="text-4xl md:text-5xl font-extrabold"
             style={{ color: headingColor, fontFamily: `"Playfair Display", serif` }}
           >
-            Cake Design Services
-          </h2>
+            Our Cake Designs
+          </h1>
           <p
-            className="text-lg md:text-xl max-w-2xl mx-auto"
+            className="mt-4 text-lg md:text-xl leading-relaxed"
             style={{ color: textColor, fontFamily: `"Poppins", sans-serif` }}
           >
-            Our expert designers craft cakes to match your celebration’s theme, taste, and style.
+            Explore our handcrafted cakes. Each design is customizable with flavors, colors, and sizes to make your celebration unforgettable.
           </p>
         </div>
 
-        {/* Design Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* DESIGN ROWS */}
+        <div className="flex flex-col gap-16">
           {designs.map((design, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center p-6 rounded-3xl shadow-lg transition-all duration-300 hover:scale-105"
-              style={{
-                backgroundColor: cardBg,
-                border: `1px solid ${cardBorder}`,
-                color: textColor,
-              }}
+              className={`flex flex-col md:flex-row items-center gap-8 ${cardHover}`}
             >
-              <div className="text-4xl mb-4">{design.icon}</div>
-              <h3
-                className="text-2xl font-semibold mb-2"
-                style={{ fontFamily: `"Playfair Display", serif` }}
+              {/* Image */}
+              <div className="md:w-1/2 w-full rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src={design.img}
+                  alt={design.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Info Box */}
+              <div
+                className="md:w-1/2 w-full p-6 rounded-2xl border"
+                style={{
+                  backgroundColor: cardBg,
+                  borderColor: oliveBorder,
+                  color: textColor,
+                }}
               >
-                {design.title}
-              </h3>
-              <p
-                className="text-center text-base"
-                style={{ fontFamily: `"Poppins", sans-serif` }}
-              >
-                {design.description}
-              </p>
+                <h2 className="text-2xl font-bold mb-4" style={{ color: headingColor }}>
+                  {design.title}
+                </h2>
+
+                <ul className="space-y-3 text-base">
+                  <li className="flex items-center gap-2">
+                    <Cake size={20} /> <span><strong>Baking:</strong> {design.baking}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Palette size={20} /> <span><strong>Flavor:</strong> {design.flavor}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Ruler size={20} /> <span><strong>Size:</strong> {design.size}</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Calendar size={20} /> <span><strong>Color:</strong> {design.color}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           ))}
         </div>

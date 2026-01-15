@@ -3,6 +3,8 @@ import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 
@@ -28,9 +30,12 @@ export default function RootLayout({ children }) {
         <Providers>
           {/* Wrap everything inside ThemeProvider */}
           <ThemeProvider>
+            <AuthProvider>
             <Navbar />
             {children}
             <Footer/>
+              <Toaster position="top-right" />
+            </AuthProvider>
           </ThemeProvider>
         </Providers>
       </body>
