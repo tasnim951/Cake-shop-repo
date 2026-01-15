@@ -3,28 +3,23 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import Link from "next/link";
-import { CakeSlice, Sun, Moon, Menu, X } from "lucide-react";
+import { CakeSlice, Sun, Moon, Menu, X, User } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const { isDark, setIsDark } = useTheme();
+  const { user, logout } = useAuth();
+  const router = useRouter();
   const [borderWidth, setBorderWidth] = useState("0%");
 
   useEffect(() => {
     const html = document.documentElement;
     isDark ? html.classList.add("dark") : html.classList.remove("dark");
-
     setTimeout(() => setBorderWidth("100%"), 50);
   }, [isDark]);
-
-  // ✅ FIXED ROUTES (NO INFO CHANGED)
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Design", href: "/design" },
-    { label: "Contact", href: "/contact" },
-    { label: "Login", href: "/login" },
-    { label: "Register", href: "/register" },
-  ];
 
   const lightBg = "rgba(176,196,138,0.8)";
   const darkBg = "rgba(55,31,10,0.95)";
@@ -32,6 +27,13 @@ export default function Navbar() {
   const darkText = "rgba(176,196,138,0.9)";
   const lightHover = "rgba(60,30,10,1)";
   const darkHover = "rgba(176,196,138,0.8)";
+
+  // Default links (login/register visible only if user not logged in)
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Design", href: "/design" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   return (
     <nav className="fixed top-0 w-full z-50">
@@ -64,7 +66,7 @@ export default function Navbar() {
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-8 font-semibold">
+        <div className="hidden md:flex items-center gap-6 font-semibold relative">
           {navLinks.map((item) => (
             <Link
               key={item.label}
@@ -81,7 +83,60 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* THEME TOGGLE */}
+          {/* User Section */}
+          {user ? (
+            <div className="relative">
+              <button
+                onClick={() => setProfileOpen(!profileOpen)}
+                className="flex items-center gap-2 p-2 rounded-full hover:bg-[rgba(60,30,10,0.2)] transition"
+              >
+                <User size={24} color={isDark ? darkText : lightText} />
+              </button>
+              {profileOpen && (
+                <div
+                  className="absolute right-0 mt-2 w-44 bg-white dark:bg-[rgba(55,31,10,0.95)] rounded-lg shadow-lg border dark:border-[rgba(176,196,138,0.5)] py-2 flex flex-col"
+                  style={{ color: isDark ? darkText : lightText }}
+                >
+                  <Link
+                    href="/my-orders"
+                    className="px-4 py-2 hover:bg-[rgba(176,196,138,0.2)] dark:hover:bg-[rgba(176,196,138,0.3)] transition"
+                    onClick={() => setProfileOpen(false)}
+                  >
+                    My Orders
+                  </Link>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setProfileOpen(false);
+                      router.push("/");
+                    }}
+                    className="px-4 py-2 text-left hover:bg-[rgba(176,196,138,0.2)] dark:hover:bg-[rgba(176,196,138,0.3)] transition"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="font-bold transition-colors duration-300"
+                style={{ color: isDark ? darkText : lightText }}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="font-bold transition-colors duration-300"
+                style={{ color: isDark ? darkText : lightText }}
+              >
+                Register
+              </Link>
+            </>
+          )}
+
+          {/* Theme Toggle */}
           <button
             onClick={() => setIsDark(!isDark)}
             aria-label="Toggle Theme"
@@ -137,7 +192,48 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* MOBILE THEME TOGGLE */}
+          {user ? (
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/my-orders"
+                className="block px-4 py-2 hover:bg-[rgba(176,196,138,0.2)] dark:hover:bg-[rgba(176,196,138,0.3)] rounded transition"
+                onClick={() => setIsOpen(false)}
+              >
+                My Orders
+              </Link>
+              <button
+                onClick={() => {
+                  logout();
+                  setIsOpen(false);
+                  router.push("/");
+                }}
+                className="block px-4 py-2 hover:bg-[rgba(176,196,138,0.2)] dark:hover:bg-[rgba(176,196,138,0.3)] rounded transition"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="block px-4 py-2 rounded transition"
+                style={{ color: isDark ? darkText : lightText }}
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="block px-4 py-2 rounded transition"
+                style={{ color: isDark ? darkText : lightText }}
+                onClick={() => setIsOpen(false)}
+              >
+                Register
+              </Link>
+            </>
+          )}
+
+          {/* Mobile Theme Toggle */}
           <button
             onClick={() => {
               setIsDark(!isDark);

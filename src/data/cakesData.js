@@ -2,6 +2,7 @@ const cakesData = [
   {
     id: 1,
     name: "Chocolate Birthday Bliss",
+    slug: "chocolate-birthday-bliss",
     category: "Birthday",
     image: "/bday.avif",
     shortDescription: "A rich chocolate cake made for joyful birthdays.",
@@ -16,6 +17,7 @@ const cakesData = [
   {
     id: 2,
     name: "Vanilla Sprinkle Delight",
+    slug: "vanilla-sprinkle-delight",
     category: "Birthday",
     image: "/bday-2.avif",
     shortDescription: "Light vanilla cake with colorful birthday vibes.",
@@ -30,6 +32,7 @@ const cakesData = [
   {
     id: 3,
     name: "Royal Wedding Elegance",
+    slug: "royal-wedding-elegance",
     category: "Wedding",
     image: "/wedding.avif",
     shortDescription: "Luxury wedding cake crafted with elegance.",
@@ -44,6 +47,7 @@ const cakesData = [
   {
     id: 4,
     name: "Floral Wedding Fantasy",
+    slug: "floral-wedding-fantasy",
     category: "Wedding",
     image: "/wedding-2.avif",
     shortDescription: "Romantic floral-inspired wedding cake.",
@@ -58,6 +62,7 @@ const cakesData = [
   {
     id: 5,
     name: "Golden Celebration Cake",
+    slug: "golden-celebration-cake",
     category: "Occasion",
     image: "/occasion.PNG",
     shortDescription: "Perfect for anniversaries and special milestones.",
@@ -72,6 +77,7 @@ const cakesData = [
   {
     id: 6,
     name: "Festive Dream Delight",
+    slug: "festive-dream-delight",
     category: "Occasion",
     image: "/occasion-2.avif",
     shortDescription: "A festive cake for joyful gatherings.",
