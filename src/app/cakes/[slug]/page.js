@@ -8,13 +8,13 @@ import { useAuth } from "@/context/AuthContext";
 
 export default function CakeDetail() {
   const { isDark } = useTheme();
-  const { user } = useAuth(); // <- for login check
+  const { user } = useAuth(); 
   const params = useParams();
   const router = useRouter();
 
-  const slug = params.slug; // get slug from URL
+  const slug = params.slug; 
 
-  // Find cake by slug
+  
   const cake = cakes.find(
     (c) => c.name.replace(/\s+/g, "-").toLowerCase() === slug
   );
@@ -35,7 +35,7 @@ export default function CakeDetail() {
   const btnText = isDark ? "rgba(55,31,10,0.95)" : "rgba(176,196,138,0.95)";
   const borderColor = isDark ? "rgba(176,196,138,0.4)" : "rgba(75,43,17,0.3)";
 
-  // Handle Order button click
+  
   const handleOrder = () => {
     if (!user) {
       router.push(`/login?redirect=/order/${slug}`);

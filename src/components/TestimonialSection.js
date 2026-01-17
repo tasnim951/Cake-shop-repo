@@ -44,10 +44,10 @@ export default function TestimonialSection() {
   const textColor = isDark ? "rgba(235,235,235,0.95)" : "rgba(60,40,20,0.95)";
   const subtleText = isDark ? "rgba(200,200,200,0.7)" : "rgba(90,65,40,0.75)";
 
-  // 🔑 IMPORTANT: no white cards in light mode
+  
   const cardBg = isDark
-    ? "rgba(75,43,17,0.75)"       // chocolate
-    : "rgba(120,140,80,0.9)";    // olive
+    ? "rgba(75,43,17,0.75)"       
+    : "rgba(120,140,80,0.9)";  
 
   const cardText = isDark ? "#fff" : "rgba(45,30,15,0.95)";
 

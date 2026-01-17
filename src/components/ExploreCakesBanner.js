@@ -50,7 +50,7 @@ export default function ExploreCakesBanner() {
       <div
         className={`relative w-full h-[360px] md:h-[420px] rounded-xl p-1 transition-all duration-700 ease-out hover:scale-105`}
         style={{
-          border: `2px solid ${imgBorderColor}`, // thin border
+          border: `2px solid ${imgBorderColor}`,
         }}
       >
         {/* IMAGE */}
@@ -65,7 +65,7 @@ export default function ExploreCakesBanner() {
           }}
         />
 
-        {/* LINEAR OVERLAY (kept as before) */}
+        
         <div
           className="absolute inset-0 rounded-xl"
           style={{

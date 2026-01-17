@@ -10,12 +10,12 @@ function MyOrdersPage() {
   const [orders, setOrders] = useState([]);
 
   // Theme colors
-  const bg = isDark ? "#2c1b0f" : "#B0C48A"; // full page background
-  const cardBg = isDark ? "#3b2513" : "#97af7a"; // card background
+  const bg = isDark ? "#2c1b0f" : "#B0C48A"; 
+  const cardBg = isDark ? "#3b2513" : "#97af7a"; 
   const borderColor = isDark ? "rgba(176,196,138,0.3)" : "rgba(150,180,110,0.3)";
-  const textColor = "#F5F0DC"; // cream/light text
-  const buttonOlive = "#B0C48A"; // olive button
-  const buttonChocolate = "#6B4226"; // chocolate button
+  const textColor = "#F5F0DC"; 
+  const buttonOlive = "#B0C48A"; 
+  const buttonChocolate = "#6B4226"; 
 
   useEffect(() => {
     const savedOrders = JSON.parse(localStorage.getItem("orders") || "[]");
@@ -128,7 +128,7 @@ function MyOrdersPage() {
         ))}
       </div>
 
-      {/* Extra space at bottom */}
+      
       <div className="h-10"></div>
     </div>
   );

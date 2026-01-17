@@ -20,7 +20,7 @@ export default function CakesPage() {
   return (
     <section
       style={{ backgroundColor: bg }}
-      className="w-full pt-24 pb-16" // increased top padding to avoid navbar overlap
+      className="w-full pt-24 pb-16"
     >
       <div className="max-w-7xl mx-auto px-6">
 

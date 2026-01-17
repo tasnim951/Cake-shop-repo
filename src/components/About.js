@@ -49,7 +49,7 @@ export default function About() {
 
         {/* Cards */}
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
-          {/* Card 1 - Design */}
+         
           <div
             className={`flex-1 px-8 py-10 rounded-2xl shadow-lg cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-2xl
               ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
@@ -67,7 +67,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Card 2 - Taste */}
+         
           <div
             className={`flex-1 px-8 py-10 rounded-2xl shadow-lg cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-2xl
               ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}

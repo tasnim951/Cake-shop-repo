@@ -33,7 +33,7 @@ export default function Footer() {
      
       <div className="w-full overflow-hidden">
         <div
-          className="h-[2px] bg-current animate-footer-border" // slightly thicker
+          className="h-[2px] bg-current animate-footer-border" 
           style={{ backgroundColor: borderColor }}
         />
       </div>
@@ -48,7 +48,7 @@ export default function Footer() {
           />
           <span
             className="text-xl md:text-2xl font-bold"
-            style={{ fontFamily: `"Geist", sans-serif`, color: textColor }} // match navbar font
+            style={{ fontFamily: `"Geist", sans-serif`, color: textColor }} 
           >
             CAKERY
           </span>

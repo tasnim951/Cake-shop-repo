@@ -28,7 +28,7 @@ export default function Navbar() {
   const lightHover = "rgba(60,30,10,1)";
   const darkHover = "rgba(176,196,138,0.8)";
 
-  // Default links (login/register visible only if user not logged in)
+  
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Design", href: "/design" },

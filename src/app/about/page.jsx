@@ -54,7 +54,7 @@ export default function AboutPage() {
   },
 ];
 
-  // Chart list / highlights
+ 
   const chartList = [
     { icon: <Star size={20} />, text: "Premium quality ingredients" },
     { icon: <Truck size={20} />, text: "Timely delivery for every order" },
@@ -86,7 +86,7 @@ export default function AboutPage() {
         {/* Rows */}
         {rows.map((row, idx) => (
           <div key={idx} className="flex flex-col md:flex-row gap-6 items-stretch">
-            {/* Box 1: Icon + Info */}
+           
             <div
               className="flex-1 p-6 rounded-2xl shadow-lg flex flex-col gap-4 transition-transform duration-300 hover:scale-105"
               style={{ backgroundColor: cardBg, color: textColor }}
@@ -100,8 +100,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Box 2: Bordered Info */}
-           {/* Box 2: DETAILS (IMPROVED) */}
+           
 <div
   className="flex-1 p-6 rounded-2xl border-2 flex flex-col gap-4
              transition-transform duration-300 hover:scale-105"
@@ -136,9 +135,9 @@ export default function AboutPage() {
           </div>
         ))}
 
-        {/* Chart / List Row */}
+    
         <div className="flex flex-col md:flex-row gap-6 items-stretch">
-          {/* List */}
+        
           <div
             className="flex-1 p-6 rounded-2xl shadow-lg flex flex-col gap-3 transition-transform duration-300 hover:scale-105"
             style={{ backgroundColor: cardBg, color: textColor }}
@@ -156,8 +155,7 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          {/* Another Box */}
-         {/* SERVICES BOX (IMPROVED) */}
+  
 <div
   className="flex-1 p-6 rounded-2xl border-2 flex flex-col gap-4
              transition-transform duration-300 hover:scale-105"

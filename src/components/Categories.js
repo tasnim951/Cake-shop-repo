@@ -80,10 +80,10 @@ export default function Categories() {
       phone,
       requirements,
       status: "Pending",
-      total: 0, // demo order
+      total: 0, 
     };
 
-    // Save to localStorage (My Orders)
+    
     const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
     localStorage.setItem("orders", JSON.stringify([...existingOrders, demoOrder]));
 
@@ -91,7 +91,7 @@ export default function Categories() {
       setLoading(false);
       setOpen(false);
       alert("Order placed successfully!");
-      router.push("/my-orders"); // Redirect to My Orders
+      router.push("/my-orders"); 
     }, 500);
   };
 

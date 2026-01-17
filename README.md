@@ -1,4 +1,4 @@
-🍰 CAKERY Shop
+## 🍰 CAKERY Shop
 
 CAKERY Shop is an online cake ordering and customization platform built with Next.js.
 It allows users to browse different cake categories, customize cakes based on their preferences, and place orders easily.
@@ -12,23 +12,23 @@ Authentication is included to protect private routes such as ordering and order 
 
 ⚠️ This project uses frontend-only data handling (no backend). Data is fetched from static/mock sources or APIs.
 
-## ⚙️ Setup & Installation Instructions
+ ## ⚙️ Setup & Installation Instructions
 
 Follow these steps to run the project locally:
 
-# Clone the repository
+## 1. Clone the repository
 
 git clone 
 
-# Navigate into the project folder
+## 2. Navigate into the project folder
 
 cd cakery-shop
 
-# Install dependencies
+## 3. Install dependencies
 
 npm install
 
-# Run the development server
+## 4. Run the development server
 npm run dev
 
 
@@ -37,7 +37,7 @@ The application will run at:
 http://localhost:3000
 
 🗂️ Route Summary
-
+--
 ✅ Implemented Features
 
 1.Responsive design (Mobile, Tablet, Desktop)

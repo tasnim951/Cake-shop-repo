@@ -13,8 +13,8 @@ export default function DesignPage() {
   const textColor = isDark ? "#F5F0DC" : "#3C2814";
 
   const cardBg = isDark
-    ? "rgba(85,45,22,0.98)"        // chocolate
-    : "rgba(150,170,120,0.45)";   // olive
+    ? "rgba(85,45,22,0.98)"       
+    : "rgba(150,170,120,0.45)";   
 
   const oliveBorder = isDark
     ? "rgba(176,196,138,0.7)"

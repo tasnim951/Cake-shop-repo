@@ -17,7 +17,7 @@ export default function RegisterPage() {
     setShow(true);
   }, []);
 
-  /* THEME COLORS – MATCH LOGIN */
+  
   const bg = isDark ? "#2c1b0f" : "#B0C48A";
   const cardBg = isDark ? "#3b2513" : "#97af7a";
   const heading = "#F5F0DC";

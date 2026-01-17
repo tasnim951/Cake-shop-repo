@@ -20,31 +20,31 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ REGISTER
+  // REGISTER
   const register = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ LOGIN
+  //  LOGIN
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // ✅ GOOGLE LOGIN
+  //  GOOGLE LOGIN
   const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // ✅ LOGOUT
+  //  LOGOUT
   const logout = async () => {
     await signOut(auth);
   };
 
-  // ✅ AUTH STATE OBSERVER (MOST IMPORTANT PART)
+ 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false); // 🔑 THIS LINE FIXES REDIRECT LOOP
+      setLoading(false); 
     });
 
     return () => unsubscribe();

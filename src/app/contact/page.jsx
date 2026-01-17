@@ -10,10 +10,10 @@ export default function ContactPage() {
   const bg = isDark ? "rgba(40,20,8,0.98)" : "rgba(176,196,138,0.85)";
 
   // Colors
-  const headingColor = isDark ? "#F5F0DC" : "#4B2B11"; // light cream in dark
-  const textColor = isDark ? "#F5F0DC" : "#3C2814";     // light text
-  const infoCardBg = isDark ? "rgba(90,50,25,0.95)" : "transparent"; // chocolate
-  const oliveBorder = isDark ? "rgba(176,196,138,0.7)" : "transparent"; // thin olive border
+  const headingColor = isDark ? "#F5F0DC" : "#4B2B11"; 
+  const textColor = isDark ? "#F5F0DC" : "#3C2814";    
+  const infoCardBg = isDark ? "rgba(90,50,25,0.95)" : "transparent"; 
+  const oliveBorder = isDark ? "rgba(176,196,138,0.7)" : "transparent"; 
   const railBg = isDark ? "rgba(65,35,15,0.95)" : "rgba(75,43,17,0.15)";
   const divider = isDark ? "rgba(176,196,138,0.5)" : "rgba(75,43,17,0.35)";
   const infoHover = "transition-all duration-500 hover:-translate-y-1 hover:shadow-xl";
@@ -129,7 +129,7 @@ export default function ContactPage() {
   );
 }
 
-/* SMALL COMPONENTS */
+
 
 function ContactItem({ icon, title, children, textColor }) {
   return (

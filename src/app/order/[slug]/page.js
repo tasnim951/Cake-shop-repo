@@ -108,7 +108,7 @@ function OrderPage() {
         style={{
           backgroundColor: cardBg,
           border: `1px solid ${borderColor}`,
-          paddingBottom: "3rem", // extra space at bottom so it doesn't touch footer
+          paddingBottom: "3rem", 
         }}
       >
         {/* Left: Image & Details */}

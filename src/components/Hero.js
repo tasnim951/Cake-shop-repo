@@ -7,22 +7,22 @@ import { useTheme } from "@/context/ThemeContext";
 
 export default function Hero() {
   const [show, setShow] = useState(false);
-  const { isDark } = useTheme(); // global theme
+  const { isDark } = useTheme(); 
 
   useEffect(() => {
     setTimeout(() => setShow(true), 100);
   }, []);
 
   /* THEME COLORS */
-  const lightBg = "rgba(176,196,138,0.85)"; // olive pastel (matches navbar)
-  const darkBg = "rgba(55,31,10,0.95)"; // dark chocolate (matches navbar)
-  const lightHeading = "rgba(75,43,17,1)"; // deep brown
-  const darkHeading = "rgba(176,196,138,0.9)"; // soft olive
+  const lightBg = "rgba(176,196,138,0.85)"; 
+  const darkBg = "rgba(55,31,10,0.95)"; 
+  const lightHeading = "rgba(75,43,17,1)"; 
+  const darkHeading = "rgba(176,196,138,0.9)"; 
 
   const lightBody = "rgba(60,40,20,0.85)";
   const darkBody = "rgba(220,220,220,0.85)";
 
-  const primaryBg = isDark ? lightHeading : lightHeading; // wood color
+  const primaryBg = isDark ? lightHeading : lightHeading; 
   const primaryText = isDark ? darkHeading : lightHeading;
   const secondaryBorder = isDark ? darkHeading : lightHeading;
   const secondaryText = isDark ? darkHeading : lightHeading;
@@ -47,7 +47,7 @@ export default function Hero() {
                 borderRadius: "28px",
                 overflow: "hidden",
                 boxShadow: isDark
-                  ? "0 25px 50px rgba(0,0,0,0.5)" // darker shadow, less shiny
+                  ? "0 25px 50px rgba(0,0,0,0.5)" 
                   : "0 25px 50px rgba(75,43,17,0.35)",
               }}
             >
@@ -58,7 +58,7 @@ export default function Hero() {
                 priority
                 className="object-cover rounded-[28px]"
                 style={{
-                  filter: isDark ? "brightness(0.85)" : "none", // reduce shiny in dark
+                  filter: isDark ? "brightness(0.85)" : "none", 
                 }}
               />
             </div>
