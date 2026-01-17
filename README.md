@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🍰 CAKERY Shop
 
-## Getting Started
+CAKERY Shop is an online cake ordering and customization platform built with Next.js.
+It allows users to browse different cake categories, customize cakes based on their preferences, and place orders easily.
+The project focuses on a smooth user experience with responsive design and dynamic price calculation  all handled on the frontend.
 
-First, run the development server:
+📌 Short Project Description
 
-```bash
+Cakery Shop is a modern web application designed to make cake ordering easy, fast, and enjoyable.
+Users can explore various cake types, customize size, flavor, and toppings, and place orders with delivery details.
+Authentication is included to protect private routes such as ordering and order history.
+
+⚠️ This project uses frontend-only data handling (no backend). Data is fetched from static/mock sources or APIs.
+
+## ⚙️ Setup & Installation Instructions
+
+Follow these steps to run the project locally:
+
+# Clone the repository
+
+git clone 
+
+# Navigate into the project folder
+
+cd cakery-shop
+
+# Install dependencies
+
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The application will run at:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🗂️ Route Summary
 
-To learn more about Next.js, take a look at the following resources:
+✅ Implemented Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.Responsive design (Mobile, Tablet, Desktop)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.User authentication (Email & Password, Google Login)
 
-## Deploy on Vercel
+3.Cake browsing by category
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.Cake detail pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5.Cake customization (size, flavor, toppings)
+
+6.Dynamic price calculation
+
+7.Order placement with delivery date & time
+
+8.Order status tracking
+
+9.My Orders page
+
+10.Protected private routes
+
+11.Metadata implementation (Home & Cake Details)
+
+12.Custom 404 error page
+
+## 🧩 Feature Explanation
+
+## 1.🧁 Cake Browsing
+
+Users can explore different types of cakes such as birthday, wedding, and special occasion cakes.
+
+## 2.🎨 Cake Customization
+
+On the cake detail page, users can:
+
+Select cake size
+
+Choose flavor
+
+Add toppings
+The total price updates dynamically based on selections.
+
+## 3.🔐 Authentication
+
+Users can register and log in using:
+
+Email & Password
+
+Google Social Login
+Private routes remain accessible after page reload if the user is logged in.
+
+## 4.🛒 Order Placement
+
+Users can:
+
+Choose delivery date & time
+
+Review total cost
+
+Place orders
+Orders are saved with Pending status.
+
+## 5.📦 My Orders
+
+Users can view all their orders with:
+
+Cake name
+
+Customization details
+
+Delivery date
+
+Total cost
+
+Order status
+Options include viewing details and canceling orders.
+
+
+
+## 6.🌱 Environment Variables
+
+All sensitive configuration keys are stored using environment variables:
+
+NEXT_PUBLIC_*
+
+## 🔗 Live & Repository Links
+
+Live Site: https://my-cake-store-beta.vercel.app/
